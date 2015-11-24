@@ -1,22 +1,22 @@
 #pragma once
 
-#include <vector>
+#include "Image.h"
+#include "Sphere.h"
 
-class Sphere;
+#include <vector>
 
 class Scene {
 public:
-    Scene(int width, int heigth);
+    Scene(Image image);
 
-    void setSpheres(const std::vector<Sphere*>& spheres);
-    const std::vector<Sphere*>& getSpheres();
+    void setSpheres(const std::vector<Sphere>& spheres);
+    const std::vector<Sphere>& getSpheres();
 
-    int getWidth();
-    int getHeight();
+	const Image& getImage() const;
+	Image& accessImage();
 
 private:
-    std::vector<Sphere*> _spheres;
-    int _width;
-    int _height;
+    std::vector<Sphere> _spheres;
+	Image _image;
 
 };

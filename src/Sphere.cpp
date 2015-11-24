@@ -2,7 +2,7 @@
 #include "sphere.h"
 #include "ray.h"
 
-Sphere::Sphere(Vector3D center, double radius) : _center(center), _radius(radius) { }
+Sphere::Sphere(double radius, Vector3D center) : _radius(radius), _center(center){ }
 
 Sphere::~Sphere() { }
 
@@ -16,11 +16,10 @@ double Sphere::intersect(const Ray& ray) const {
     return b - sqrt(det);
 }
 
-const Vector3D& Sphere::getCenter() {
-    return _center;
-}
-
-
 const double Sphere::getRadius() {
     return _radius;
+}
+
+const Vector3D& Sphere::getCenter() {
+	return _center;
 }

@@ -6,7 +6,7 @@ class Ray;
 
 class Sphere {
 public:
-    Sphere(Vector3D center, double radius);
+    Sphere(double radius, Vector3D center);
     ~Sphere();
 
     const Vector3D& getCenter();
@@ -14,6 +14,6 @@ public:
 
     double intersect(const Ray& ray) const;
 private:
+	double _radius;
     Vector3D _center;
-    double _radius;
 };
