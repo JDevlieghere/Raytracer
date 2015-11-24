@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# Cmake
+build
+
+# Dotfiles
+.project
+.cproject
+.idea
