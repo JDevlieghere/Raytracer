@@ -14,6 +14,6 @@ public:
 
     double intersect(const Ray& ray) const;
 private:
-	double _radius;
+    double _radius;
     Vector3D _center;
 };

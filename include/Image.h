@@ -2,6 +2,8 @@
 
 #include "Pixel.h"
 
+#include <string>
+
 class Image {
 public:
 	Image(unsigned int width, unsigned int height);
@@ -11,6 +13,8 @@ public:
 
 	unsigned int getWidth() const;
 	unsigned int getHeight() const;
+
+    void writeToFile(const std::string& fileName);
 
 private:
 	unsigned int getIndex(unsigned int x, unsigned int y) const;
