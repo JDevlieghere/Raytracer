@@ -7,12 +7,12 @@ class Scene;
 
 class Camera {
 public:
-	Camera(double fieldOfView, Ray gaze);
+    Camera(double fieldOfView, Ray gaze);
 
-	Vector3D getHorizontal(Scene& scene);
-	Vector3D getVertical(Scene& scene);
+    Vector3D getHorizontal(Scene& scene);
+    Vector3D getVertical(Scene& scene);
 
 private:
-	double _fieldOfView;
-	Ray _gaze;
+    double _fieldOfView;
+    Ray _gaze;
 };

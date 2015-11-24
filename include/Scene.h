@@ -12,11 +12,11 @@ public:
     void setSpheres(const std::vector<Sphere>& spheres);
     const std::vector<Sphere>& getSpheres();
 
-	const Image& getImage() const;
-	Image& accessImage();
+    const Image& getImage() const;
+    Image& accessImage();
 
 private:
     std::vector<Sphere> _spheres;
-	Image _image;
+    Image _image;
 
 };

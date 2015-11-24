@@ -2,9 +2,9 @@
 #include "sphere.h"
 #include "ray.h"
 
-Sphere::Sphere(double radius, Vector3D center) : _radius(radius), _center(center){ }
+Sphere::Sphere(double radius, Vector3D center) : _radius(radius), _center(center) {}
 
-Sphere::~Sphere() { }
+Sphere::~Sphere() {}
 
 double Sphere::intersect(const Ray& ray) const {
     Vector3D v = _center - ray.getOrigin();
@@ -21,5 +21,5 @@ const double Sphere::getRadius() {
 }
 
 const Vector3D& Sphere::getCenter() {
-	return _center;
+    return _center;
 }
