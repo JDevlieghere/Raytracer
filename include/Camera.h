@@ -1,16 +1,18 @@
 #pragma once
 
-#include "Vector3D.h"
 #include "Ray.h"
+#include "Vector3D.h"
 
 class Scene;
 
-class Camera {
+class Camera
+{
 public:
     Camera(double fieldOfView, Ray gaze);
 
-    Vector3D getHorizontal(Scene& scene);
-    Vector3D getVertical(Scene& scene);
+    const Ray& Camera::getGaze() const;
+
+    double getAngle() const;
 
 private:
     double _fieldOfView;

@@ -2,17 +2,22 @@
 
 #include <iostream>
 
-class Vector3D {
+class Vector3D
+{
 public:
-    Vector3D(double x = 0.0, double y = 0.0, double z = 0.0);
-    ~Vector3D();
+    Vector3D();
+    Vector3D(double d);
+    Vector3D(double x, double y, double z);
 
-    Vector3D operator + (const Vector3D& v) const;
-    Vector3D operator - (const Vector3D& v) const;
-    Vector3D operator * (const Vector3D& v) const;
-    Vector3D operator * (double d) const;
+    Vector3D operator+(const Vector3D& v) const;
+    Vector3D operator-(const Vector3D& v) const;
+    Vector3D operator-() const;
+    Vector3D operator*(const Vector3D& v) const;
+    Vector3D operator*(double d) const;
+    Vector3D& operator += (const Vector3D& v);
 
-    double dotProduct(const Vector3D& v);
+
+    double dot(const Vector3D& v) const;
     Vector3D& normalize();
 
     double getX() const;
@@ -25,4 +30,4 @@ private:
     double _z;
 };
 
-std::ostream& operator<<(std::ostream& os, const Vector3D & v);
+std::ostream& operator<<(std::ostream& os, const Vector3D& v);

@@ -5,12 +5,14 @@
 
 #include <vector>
 
-class Scene {
+class Scene
+{
 public:
     Scene(Image image);
 
     void setSpheres(const std::vector<Sphere>& spheres);
-    const std::vector<Sphere>& getSpheres();
+    const std::vector<Sphere>& getSpheres() const;
+    std::vector<Sphere>& accessSpheres();
 
     const Image& getImage() const;
     Image& accessImage();
@@ -18,5 +20,4 @@ public:
 private:
     std::vector<Sphere> _spheres;
     Image _image;
-
 };

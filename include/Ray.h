@@ -2,7 +2,8 @@
 
 #include "Vector3D.h"
 
-class Ray {
+class Ray
+{
 public:
     Ray(Vector3D origin, Vector3D direction);
     ~Ray();

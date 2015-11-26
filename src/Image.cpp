@@ -1,36 +1,56 @@
 #include "Image.h"
 
-#include <stdio.h>
+#include <algorithm>
+#include <fstream>
 
-Image::Image(unsigned int width, unsigned int height) : _width(width), _height(height) {}
+Image::Image(unsigned int width, unsigned int height) : _width(width), _height(height)
+{
+    _pixels = new Vector3D[width * height];
+}
 
-const Pixel& Image::getPixel(unsigned int x, unsigned int y) const {
+Image::~Image()
+{
+    if (_pixels)
+    {
+        delete _pixels;
+        _pixels = nullptr;
+    }
+}
+
+const Vector3D& Image::getPixel(unsigned int x, unsigned int y) const
+{
     return _pixels[getIndex(x, y)];
 }
 
-void Image::setPixel(unsigned int x, unsigned int y, const Pixel& pixel) {
+void Image::setPixel(unsigned int x, unsigned int y, const Vector3D& pixel)
+{
     _pixels[getIndex(x, y)] = pixel;
 }
 
-unsigned int Image::getIndex(unsigned int x, unsigned int y) const {
-    return y*_width + x;
+unsigned int Image::getIndex(unsigned int x, unsigned int y) const
+{
+    return y * _width + x;
 }
 
-unsigned int Image::getWidth() const {
+unsigned int Image::getWidth() const
+{
     return _width;
 }
 
-unsigned int Image::getHeight() const {
+unsigned int Image::getHeight() const
+{
     return _height;
 }
 
-void Image::writeToFile(const std::string& fileName) {
-    FILE * file = fopen(fileName.c_str(), "w");
-    if (file != nullptr) {
-        fprintf(file, "P3\n%d %d\n%d\n", _width, _height, 255);
-        for (unsigned int i = 0; i < _width*_height; i++) {
-            fprintf(file, "%d %d %d ", _pixels[i].r, _pixels[i].g, _pixels[i].b);
-        }
-        fclose(file);
+void Image::writeToFile(const std::string& fileName)
+{
+    std::ofstream ofs("./untitled.ppm", std::ios::out | std::ios::binary);
+    ofs << "P6\n" << _width << " " << _height << "\n255\n";
+    for (unsigned i = 0; i < _width * _height; ++i)
+    {
+        ofs << static_cast<unsigned char>(std::min(double(1), _pixels[i].getX()) * 255)
+            << static_cast<unsigned char>(std::min(double(1), _pixels[i].getY()) * 255)
+            << static_cast<unsigned char>(std::min(double(1), _pixels[i].getZ()) * 255);
     }
+    ofs.close();
 }

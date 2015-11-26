@@ -1,22 +1,35 @@
 #pragma once
 
-#include "Scene.h"
 #include "Camera.h"
+#include "Image.h"
+#include "Scene.h"
+#include "Vector3D.h"
+#include <math.h>
 
-class Renderer {
+class Sphere;
+class Ray;
+class Scene;
+
+class Renderer
+{
 public:
-    Renderer(Scene scene, Camera camera, int samples = 1);
+    Renderer(const Camera& camera, Scene& scene, int maxDepth = 5, int samples = 1);
+
+    void render();
 
 private:
-    Scene _scene;
+
+    static double Fresnel(const double& theta, const double& level);
+
+    Vector3D trace(const Ray& ray, const int depth) const;
+    void intersect(const Ray& ray, const Sphere* sphere, double& t) const;
+
     Camera _camera;
+    Scene _scene;
+    int _maxDepth;
     int _samples;
+
+    const Vector3D BACKGROUND_COLOR = Vector3D(1);
+    const double EPSILON = 1e-4;
+
 };
-
-inline double clamp(double x) {
-    return x < 0 ? 0 : x>1 ? 1 : x;
-}
-
-inline int toInt(double x) {
-    return int(pow(clamp(x), 1 / 2.2) * 255 + .5);
-}
