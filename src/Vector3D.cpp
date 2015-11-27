@@ -50,7 +50,7 @@ Vector3D& Vector3D::operator+=(const Vector3D& v)
     _x += v.getX();
     _y += v.getY();
     _z += v.getZ();
-    return *this; 
+    return *this;
 }
 
 double Vector3D::dot(const Vector3D& v) const

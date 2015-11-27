@@ -7,8 +7,9 @@ class Ray;
 class Sphere
 {
 public:
-    Sphere(double radius,
-           const Vector3D& center,
+
+    Sphere(const Vector3D& center = 0,
+           double radius = 0,
            const Vector3D& surfaceColor = 0,
            double transparency = 0,
            double reflection = 0,
@@ -24,11 +25,12 @@ public:
     double getReflection() const;
 
     bool intersect(const Ray& ray, double& t0, double& t1) const;
-        
-private:
 
-    double _radius;
+    friend std::ostream& operator<<(std::ostream& os, const Sphere& sphere);
+
+private:
     Vector3D _center;
+    double _radius;
 
     Vector3D _surfaceColor;
     double _transparency;

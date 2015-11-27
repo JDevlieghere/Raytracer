@@ -8,10 +8,13 @@ set (VERSION_MINOR 0)
 # Directories
 set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
 set(HEADER_DIR ${CMAKE_SOURCE_DIR}/include)
+set(LIB_DIR    ${CMAKE_SOURCE_DIR}/lib)
+
 
 # Files
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADER_FILES ${HEADER_DIR}/*.h)
+file(GLOB_RECURSE LIB_FILES    ${LIB_DIR}/*.h)
 
 # Boost
 find_package(Boost COMPONENTS program_options REQUIRED)
@@ -21,12 +24,14 @@ set(Boost_USE_STATIC_LIBS ON)
 include_directories(
         ${SOURCE_DIR}
         ${HEADER_DIR}
+        ${LIB_DIR}
         ${Boost_INCLUDE_DIR})
 
 # Executables
 add_executable(Main
         ${SOURCE_FILES}
-        ${HEADER_FILES})
+        ${HEADER_FILES}
+        ${LIB_FILES})
 
 # Linking
 target_link_libraries(Main 

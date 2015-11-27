@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene(Image image) : _image(image)
+Scene::Scene(unsigned width, unsigned height) : _width(width), _height(height)
 {
 }
 
@@ -19,12 +19,12 @@ std::vector<Sphere>& Scene::accessSpheres()
     return _spheres;
 }
 
-const Image& Scene::getImage() const
+unsigned Scene::getWidth() const
 {
-    return _image;
+    return _width;
 }
 
-Image& Scene::accessImage()
+unsigned Scene::getHeight() const
 {
-    return _image;
+    return _height;
 }

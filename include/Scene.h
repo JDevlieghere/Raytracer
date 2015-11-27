@@ -8,16 +8,17 @@
 class Scene
 {
 public:
-    Scene(Image image);
+    Scene(unsigned width, unsigned height);
 
     void setSpheres(const std::vector<Sphere>& spheres);
     const std::vector<Sphere>& getSpheres() const;
     std::vector<Sphere>& accessSpheres();
 
-    const Image& getImage() const;
-    Image& accessImage();
+    unsigned getWidth() const;
+    unsigned getHeight() const;
 
 private:
     std::vector<Sphere> _spheres;
-    Image _image;
+    unsigned _width;
+    unsigned _height;
 };

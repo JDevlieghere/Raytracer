@@ -1,13 +1,9 @@
 #include "Camera.h"
-#include "Scene.h"
 
-Camera::Camera(double fieldOfView, Ray gaze) : _fieldOfView(fieldOfView), _gaze(gaze)
-{
-}
+#include <math.h>
 
-const Ray& Camera::getGaze() const
+Camera::Camera(double fieldOfView) : _fieldOfView(fieldOfView)
 {
-    return _gaze;
 }
 
 double Camera::getAngle() const

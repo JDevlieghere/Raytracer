@@ -8,13 +8,10 @@ class Scene;
 class Camera
 {
 public:
-    Camera(double fieldOfView, Ray gaze);
-
-    const Ray& Camera::getGaze() const;
+    Camera(double fieldOfView);
 
     double getAngle() const;
 
 private:
     double _fieldOfView;
-    Ray _gaze;
 };

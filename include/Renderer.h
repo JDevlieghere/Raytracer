@@ -4,7 +4,6 @@
 #include "Image.h"
 #include "Scene.h"
 #include "Vector3D.h"
-#include <math.h>
 
 class Sphere;
 class Ray;
@@ -17,15 +16,18 @@ public:
 
     void render();
 
+    const Image& getImage() const;
+
 private:
 
     static double Fresnel(const double& theta, const double& level);
 
     Vector3D trace(const Ray& ray, const int depth) const;
-    void intersect(const Ray& ray, const Sphere* sphere, double& t) const;
+    bool intersect(const Ray& ray, Sphere& sphere, double& t) const;
 
     Camera _camera;
     Scene _scene;
+    Image _image;
     int _maxDepth;
     int _samples;
 

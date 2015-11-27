@@ -2,49 +2,26 @@
 
 #include <algorithm>
 #include <fstream>
+#include <sstream>
+#include <string>
 
-Image::Image(unsigned int width, unsigned int height) : _width(width), _height(height)
+Image::Image(unsigned width, unsigned height) : _width(width), _height(height)
 {
-    _pixels = new Vector3D[width * height];
+    _pixels = std::vector<Vector3D>(_width * _height);
 }
 
 Image::~Image()
 {
-    if (_pixels)
-    {
-        delete _pixels;
-        _pixels = nullptr;
-    }
 }
 
-const Vector3D& Image::getPixel(unsigned int x, unsigned int y) const
+void Image::setPixel(unsigned i, const Vector3D& pixel)
 {
-    return _pixels[getIndex(x, y)];
+    _pixels[i] = pixel;
 }
 
-void Image::setPixel(unsigned int x, unsigned int y, const Vector3D& pixel)
+void Image::writeToFile(const std::string& fileName) const
 {
-    _pixels[getIndex(x, y)] = pixel;
-}
-
-unsigned int Image::getIndex(unsigned int x, unsigned int y) const
-{
-    return y * _width + x;
-}
-
-unsigned int Image::getWidth() const
-{
-    return _width;
-}
-
-unsigned int Image::getHeight() const
-{
-    return _height;
-}
-
-void Image::writeToFile(const std::string& fileName)
-{
-    std::ofstream ofs("./untitled.ppm", std::ios::out | std::ios::binary);
+    std::ofstream ofs(fileName, std::ios::out | std::ios::binary);
     ofs << "P6\n" << _width << " " << _height << "\n255\n";
     for (unsigned i = 0; i < _width * _height; ++i)
     {
