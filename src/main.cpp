@@ -22,9 +22,9 @@ int main(int argc, char* argv[])
     Scene scene(640, 480);
     scene.setSpheres(spheres);
 
-    Camera camera(30);
+    Camera camera(50);
 
-    Renderer renderer(camera, scene);
+    Renderer renderer(camera, scene, 20);
     renderer.render();
 
     const Image& image = renderer.getImage();

@@ -21,7 +21,10 @@ public:
 private:
 
     static double Fresnel(const double& theta, const double& level);
-
+    const Vector3D& renderDiffuse(const Sphere & sphere, const Ray & intersection) const;
+    const Vector3D& renderReflection(const Ray & intersection, const Ray & ray, const int depth) const;
+    const Vector3D& renderRefraction(const Sphere & sphere, const Ray & intersection, const Ray & ray, const int depth, const bool inside) const;
+    const Vector3D& renderSpecular(const Sphere& sphere, const Ray& intersection, const Ray& ray, const int depth, const bool inside) const;
     Vector3D trace(const Ray& ray, const int depth) const;
     bool intersect(const Ray& ray, Sphere& sphere, double& t) const;
 
